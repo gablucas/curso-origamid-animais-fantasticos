@@ -1,5 +1,3 @@
-console.log(window.innerWidth)
-
 export default class Tooltip {
   constructor(tooltips) {
     this.tooltips = document.querySelectorAll(tooltips);
