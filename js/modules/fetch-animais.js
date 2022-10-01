@@ -2,29 +2,29 @@ import AnimaNumeros from './anima-numeros.js';
 
 export default function fetchAnimais(url, target) {
 
-  // Cria a div contendo informações com o total de animais
-  function criarDiv(animal) {
+  // [4] - Anima os números de cada animal usando uma classe criada em outro módulo (AnimaNumeros)
+  function animaAnimaisNumeros() {
+    const animaNumeros = new AnimaNumeros('[data-numero]', '.numeros', 'ativo');
+    animaNumeros.init();
+  }
+
+  // [3] - Cria a div contendo informações com o total de animais
+  function criarDivAnimais(animal) {
     const div = document.createElement('div');
     div.classList.add('numero-animal');
     div.innerHTML = `<h3>${animal.specie}</h3><span data-numero>${animal.total}</span>`;
     return div;
   }
 
-  // Preenche cada animal no DOM
+  // [2] - Preenche cada animal no DOM
   const numerosGrid = document.querySelector(target);
 
   function preencherAnimal(animal) {
-    const divAnimal = criarDiv(animal);
+    const divAnimal = criarDivAnimais(animal);
     numerosGrid.appendChild(divAnimal);
   }
 
-  // Anima os números de cada animal
-  function animaAnimaisNumeros() {
-    const animaNumeros = new AnimaNumeros('[data-numero]', '.numeros', 'ativo');
-    animaNumeros.init();
-  }
-
-  // Puxa os animais atraves de um arquivo json, e cria cada animal utilizando cri
+  // [1] - Puxa os animais atraves de um arquivo json, e cria cada animal utilizando criarDivAnimais
   async function criarAnimal() {
     try {
       // Fetch, espera resposta e transforma a resposta em json
